@@ -1,0 +1,190 @@
+Briona Davis and Siddharth Batra
+01/24/2017
+Lab 01
+
+
+1.	We expected the output to be the character ‘m’. This was the same output we got when we ran the program.
+2.	If all the programming were correct, the output would be null i.e. the null character.
+3.	
+Exception in thread "main" java.lang.StringIndexOutOfBoundsException: String index out of range: 9
+		at java.lang.String.charAt(String.java:658)
+		at lab01.WordAnalyzer.firstRepeatedCharacter(WordAnalyzer.java:34)
+		at lab01.WordAnalyzer.main(WordAnalyzer.java:105)
+4.	
+a.	The exception that occurred was the StringIndexOutOfBoundsException.
+b.	The execution of the word.charAt(i + 1) method leads to an out of bounds exception, as we have already reached the end of the string ‘Dickinson’ (as there is no 9th string index).
+c.	The charAt() method.
+d.	It was called from line 34.
+e.	The method firstRepeatedCharacter() contains the line number 34.
+f.	It was called from line 105.
+5.	If one of the blue highlighted links is clicked, we jump to the appropriate line in which the method was called.
+6.	We follow the following directions in Eclipse to turn on line numbers:
+Window → Preferences → General → Editors → Text Editors → Show line numbers.
+7.	The exception that occurred was the NullPointerException. It occurred at line 32.
+8.	
+public WordAnalyzer(String aWord) {
+		word = aWord;
+		if (word == null) {
+			throw new IllegalArgumentException("Hey! The string cannot be null!");
+		}
+	}
+9.	
+Exception in thread "main" java.lang.IllegalArgumentException: Hey! The string cannot be null!
+		at lab01.WordAnalyzer.<init>(WordAnalyzer.java:22)
+		at lab01.WordAnalyzer.main(WordAnalyzer.java:107)
+10.	When we run the program now, the StringIndexOutOfBounds exception is thrown. The contents of the last line executed was: 
+			if (word.charAt(i) == c) {
+11.	The exception thrown is the ‘AssertionError’. The message given is “pos must be >= 0 but was -1”. The contents of the line that caused it are “assert pos >= 0 : "pos must be >= 0 but was " + pos;”
+
+12.	
+assert pos < word.length() : "pos must be < word length (" + word.length() + "),"
+	+ " but was " + pos;
+13.	New call to find: System.out.println(wa1.find('g', 20));
+Exception generated: AssertionError
+Message given: pos must be < word length (11), but was 20
+“Exception in thread "main" java.lang.AssertionError: pos must be < word length (11), but was 20”
+14.	(No submission!)
+15.	
+i = 0
+ ch = D
+ nextCh = i
+i = 1
+ ch = i
+ nextCh = c
+i = 2
+ ch = c
+ nextCh = k
+i = 3
+ ch = k
+ nextCh = i
+i = 4
+ ch = i
+ nextCh = n
+i = 5
+ ch = n
+ nextCh = s
+i = 6
+ ch = s
+ nextCh = o
+i = 7
+ ch = o
+ nextCh = n
+i = 8
+ ch = n
+Exception in thread "main" java.lang.StringIndexOutOfBoundsException: String index out of range: 9
+	at java.lang.String.charAt(String.java:658)
+	at lab01.WordAnalyzer.firstRepeatedCharacter(WordAnalyzer.java:39)
+	at lab01.WordAnalyzer.main(WordAnalyzer.java:113)
+16.	It reveals that the issue arises when the charAt(i+1) method is called with index 8, because the exception is thrown when i=9. 
+17.	
+public char firstRepeatedCharacter() {
+		for (int i = 0; i < word.length() -1; i++) {
+			System.out.println("i = " + i);
+			char ch = word.charAt(i);
+			System.out.println(" ch = " + ch);
+			char nextCh = word.charAt(i + 1);
+			System.out.println(" nextCh = " + nextCh);
+			
+
+if (ch == nextCh) {
+				return ch;
+			}
+		}
+		return '\0';
+	}
+18.	 (No submission!)
+19.	Based on the description, the output ‘r’ should be generated. The actual output is ‘P’.
+20.	
+Jan 24, 2017 4:55:37 PM lab01.WordAnalyzer firstMultipleCharacter
+INFO: Entering firstMultipleCharacter method
+Jan 24, 2017 4:55:37 PM lab01.WordAnalyzer firstMultipleCharacter
+INFO: i = 0
+Jan 24, 2017 4:55:37 PM lab01.WordAnalyzer firstMultipleCharacter
+INFO: Looking for ch = P
+Jan 24, 2017 4:55:37 PM lab01.WordAnalyzer firstMultipleCharacter
+INFO: Found next P at nextLoc = 0
+Jan 24, 2017 4:55:37 PM lab01.WordAnalyzer firstMultipleCharacter
+INFO: Multiple found - Exiting firstMultipleCharacter
+P
+21.	It shows that the letter ‘P’ is found twice – whereas this is clearly not true in the word ‘Programming’ – meaning that the bug is in the line ‘int nextLoc = find(ch, i);’.
+22.	
+public char firstMultipleCharacter() {
+		Logger.getLogger("fMP").setLevel(Level.INFO);
+		Logger.getLogger("fMP").info("Entering firstMultipleCharacter method");
+		
+		for (int i = 0; i < word.length() - 1; i++) {
+			Logger.getLogger("fMP").info("i = " + i);
+			char ch = word.charAt(i);
+			Logger.getLogger("fMP").info("Looking for ch = " + ch);
+			int nextLoc = find(ch, i+1);
+			Logger.getLogger("fMP").info("Found next " + ch + " at nextLoc = " + nextLoc);
+			if (nextLoc >= 0) {
+				Logger.getLogger("fMP").info("Multiple found - Exiting firstMultipleCharacter");
+				return ch;
+			}
+		}
+		Logger.getLogger("fMP").info("No multiple - Exiting firstMultipleCharacter");
+		return 0;
+	}
+23.	Logger.getLogger("fMP").setLevel(Level.OFF);
+24.	Based on the description of the method, the output generated should be ‘5’. This matches the actual output.
+25.	The output should be ‘5’, but should be ‘4’.
+26.	If a breakpoint is set, a small blue bubble appears to the left of the line on which the breakpoint is set.
+27.	In the WordAnalyer.java tab, there is a small arrow to the left of the line at which the execution is currently suspended (indicating that execution is paused). Also, in the debug tab, it indicates that execution is suspended as it literally states ‘Thread [main] (Suspended)’, and also shows the line at which execution is paused.
+28.	When we click the ‘Step Over’ tool, execution of the first line of main (constructor of WordAnalyzer) takes place, and pauses at the start of the second line (method call of countRepeatedCharacters()).
+29.	When we click ‘Step Into’, we begin execution of the first line of the countRepeatedCharacters() method, pausing at the start its first line.
+30.	The variable in scope at this point is ‘this’. This is because it refers to the WordAnalyzer object “aabbcccccbbbdd”. Therefore, the value of the word field of the object referred to by that variable is “aabbcccccbbbdd”.
+31.	After clicking the ‘Step Over’ button, the ‘numGroups’ variable was added to the scope with the value of ‘0’.
+32.	If we ‘Step Over’ again, the variable ‘chPos’ is added with the value of ‘1’. This is because the chPos variable is initialized in the for loop statement.
+33.	If we click ‘Step Into’, we begin execution of the charAt() method.
+34.	The body of the if statement will not execute, as the value of word.charAt(chPos), which is ‘a’, is not equal to the value of word.charAt(chPos + 1), which is ‘b’.
+35.	The body of this inner if statement will run, as the values of the two characters being compared are not equal (that is, a != b).
+36.	The value of numGroups at this point is 1. The value of numGroups at this point should be 2, as the ‘aa…’ in the start of the parameter should be counted as the first group.
+37.	We can tell the program has stopped as the Debug tab shows <terminated> next to the WordAnalyzer program.
+38.	
+public int countRepeatedCharacters() {
+		/*
+		* Go through the word comparing the character at each position to the
+		* next. If a repetition is found, determine if it is at the start of a
+		* group (e.g. the first bb in "abbbcd"). If it is then add 1 to the
+		* number of groups.
+		*/
+		int numGroups = 0; // the number of groups seen so far.
+		for (int chPos = 0; chPos < word.length() -1; chPos++) {
+			if (word.charAt(chPos) == word.charAt(chPos + 1)) {
+				// found a repetition
+				if (chPos-1==-1 || word.charAt(chPos - 1) != word.charAt(chPos)) {
+					// it's at the start of a group
+					numGroups++;
+				}
+			}
+		}
+		return numGroups;
+	}
+
+
+
+
+39.	
+/**
+	* Finds if a character is present in the given string, starting from the indicated position, and 
+	* returns the position at which the character is found in the string; otherwise if the character 
+	* is not found, returns -1.
+	* For example, find(f, 3), when acting on string 'falafel', should return 4.
+	* 
+	* @param c the character being search for
+	* @param pos the position at which we begin searching in the string
+	* @return the position at which the character was found, or -1 if not found.
+	*/
+	private int findCharacter(char c, int pos) {
+		assert pos >= 0 : "pos must be >= 0 but was " + pos; 
+		assert pos < word.length() : "pos must be < word length (" + word.length() + ")," 
+				+ " but was " + pos;
+		for (int i = pos; i < word.length(); i++) {
+			if (word.charAt(i) == c) { 
+				//character at i is equal to character 'c'
+				return i; //return position of this character
+			}
+		}
+		return -1; //no match found
+	}

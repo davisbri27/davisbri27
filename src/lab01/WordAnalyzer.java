@@ -1,5 +1,8 @@
 package lab01;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * A (buggy) class that analyzes words. Designed for use in a debugging
  * laboratory in a computer science course.
@@ -18,6 +21,9 @@ public class WordAnalyzer {
 	 */
 	public WordAnalyzer(String aWord) {
 		word = aWord;
+		if (word == null) {
+			throw new IllegalArgumentException("Hey! The string cannot be null!");
+		}
 	}
 
 	/**
@@ -29,10 +35,12 @@ public class WordAnalyzer {
 	 *         if none found
 	 */
 	public char firstRepeatedCharacter() {
-		for (int i = 0; i < word.length(); i++) {
+		for (int i = 0; i < word.length() -1; i++) {
+			//System.out.println("i = " + i);
 			char ch = word.charAt(i);
+			//System.out.println(" ch = " + ch);
 			char nextCh = word.charAt(i + 1);
-
+			//System.out.println(" nextCh = " + nextCh);
 			if (ch == nextCh) {
 				return ch;
 			}
@@ -49,23 +57,44 @@ public class WordAnalyzer {
 	 * @return the first repeated character, or 0 if none found
 	 */
 	public char firstMultipleCharacter() {
-		for (int i = 0; i < word.length(); i++) {
+		Logger.getLogger("fMP").setLevel(Level.OFF);
+		Logger.getLogger("fMP").info("Entering firstMultipleCharacter method");
+		
+		for (int i = 0; i < word.length() - 1; i++) {
+			Logger.getLogger("fMP").info("i = " + i);
 			char ch = word.charAt(i);
-			int nextLoc = find(ch, i);
+			Logger.getLogger("fMP").info("Looking for ch = " + ch);
+			int nextLoc = findCharacter(ch, i+1);
+			Logger.getLogger("fMP").info("Found next " + ch + " at nextLoc = " + nextLoc);
 			if (nextLoc >= 0) {
+				Logger.getLogger("fMP").info("Multiple found - Exiting firstMultipleCharacter");
 				return ch;
 			}
 		}
+		Logger.getLogger("fMP").info("No multiple - Exiting firstMultipleCharacter");
 		return 0;
 	}
-
-	private int find(char c, int pos) {
+	/**
+	 * Finds if a character is present in the given string, starting from the indicated position, and 
+	 * returns the position at which the character is found in the string; otherwise if the character 
+	 * is not found, returns -1.
+	 * For example, find(f, 3), when acting on string 'falafel', should return 4.
+	 * 
+	 * @param c the character being search for
+	 * @param pos the position at which we begin searching in the string
+	 * @return the position at which the character was found, or -1 if not found.
+	 */
+	private int findCharacter(char c, int pos) {
+		assert pos >= 0 : "pos must be >= 0 but was " + pos; 
+		assert pos < word.length() : "pos must be < word length (" + word.length() + ")," 
+				+ " but was " + pos;
 		for (int i = pos; i < word.length(); i++) {
-			if (word.charAt(i) == c) {
-				return i;
+			if (word.charAt(i) == c) { 
+				//character at i is equal to character 'c'
+				return i; //return position of this character
 			}
 		}
-		return -1;
+		return -1; //no match found
 	}
 
 	/**
@@ -82,10 +111,10 @@ public class WordAnalyzer {
 		 * number of groups.
 		 */
 		int numGroups = 0; // the number of groups seen so far.
-		for (int chPos = 1; chPos < word.length() - 1; chPos++) {
+		for (int chPos = 0; chPos < word.length() -1; chPos++) {
 			if (word.charAt(chPos) == word.charAt(chPos + 1)) {
 				// found a repetition
-				if (word.charAt(chPos - 1) != word.charAt(chPos)) {
+				if (chPos-1==-1 || word.charAt(chPos - 1) != word.charAt(chPos)) {
 					// it's at the start of a group
 					numGroups++;
 				}
@@ -101,7 +130,8 @@ public class WordAnalyzer {
 	 *            none.
 	 */
 	public static void main(String[] args) {
-		WordAnalyzer wa1 = new WordAnalyzer("Programmer");
-		System.out.println(wa1.firstRepeatedCharacter());
+		WordAnalyzer wa1 = new WordAnalyzer("bbaabbcccccbbbddeff");
+		int r = wa1.countRepeatedCharacters();
+		System.out.println(r);
 	}
 }
