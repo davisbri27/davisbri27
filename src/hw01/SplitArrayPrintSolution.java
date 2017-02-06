@@ -75,6 +75,9 @@ public class SplitArrayPrintSolution {
 			// try putting nums[start] in group 1.
 			if (splitArray(nums, start + 1, gp1Sum + nums[start], gp1List, gp2Sum, gp2List)) {
 				// Found a solution with nums[start] in group 1!
+				
+				gp1List.add(nums[start]);
+				gp1Sum+=nums[start];
 				return true;
 			}
 			// no solution with nums[start] in group 1, so backtrack.
@@ -82,6 +85,8 @@ public class SplitArrayPrintSolution {
 			// nums[start] didn't work in group 1 so now try it in group 2
 			if (splitArray(nums, start + 1, gp1Sum, gp1List, gp2Sum + nums[start], gp2List)) {
 				// Found a solution with nums[start] in group 2!
+				gp2List.add(nums[start]);
+				gp2Sum+= nums[start];
 				return true;
 			}
 			// no solution with nums[start] in group 2, so backtrack.

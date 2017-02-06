@@ -14,7 +14,28 @@ public class CountXWithDubs {
 	 * @return the count of x's.
 	 */
 	public static int countXWithDubs(String s) {
-		return 0;
+		return countXWithDubs(s, 0);
+	}
+
+	public static int countXWithDubs(String s, int start) {
+		if(start>= s.length()){
+			return 0;
+		}
+		
+		
+
+		if(s.charAt(start) =='x'){ //if it equals x
+			if( start-1==-1 || s.charAt(start-1) !='x' ){ // if it is the beginning of the string, or if value before does not equal x
+				return 1+ countXWithDubs(s, start+1); //add 1
+			}else{
+				return 2+countXWithDubs(s, start+1); //add 2
+			}
+			
+		}else{
+			return countXWithDubs(s, start+1);
+		}
+
+		
 	}
 
 	@Test
@@ -63,13 +84,13 @@ public class CountXWithDubs {
 		assertEquals("Incorrect result with double x at start", 4,
 				countXWithDubs("xxabxcd"));
 	}
-	
+
 	@Test
 	public void testDoubleXEnd() {
 		assertEquals("Incorrect result with double x at end", 4,
 				countXWithDubs("abxcdxx"));
 	}
-	
+
 	@Test
 	public void testBunchOfXs() {
 		assertEquals("Incorrect result with bunch of x's", 13,

@@ -51,10 +51,35 @@ public class Combinations {
 	 */
 	private static ArrayList<String> combinations(String prefix, String rest,
 			int k) {
-		recusiveCalls++;
-
-		return null;
+		
+		ArrayList<String>subs= new ArrayList<String>();
+		
+		if(rest.length()==0){
+			
+			return subs;
+			
+		}else if(prefix.length()==k){
+			subs.add(prefix);
+			return subs; 
+		}else if(prefix.length() + rest.length()< k){
+			return subs;
+			
+		}else{
+			
+			ArrayList<String> incl= combinations(prefix+rest.charAt(0), rest.substring(1),k);
+			subs.addAll(incl);
+			
+			ArrayList<String> excl= combinations(prefix, rest.substring(1), k);
+			subs.addAll(excl);
+			
+			return subs;
+		
+		
+	
 	}
+}
+		
+
 
 	public static void main(String[] args) {
 		ArrayList<String> subs = combinations("ABCDE", 2);
@@ -64,26 +89,26 @@ public class Combinations {
 			System.out.println(s);
 		}
 	}
-	
+
 	@Test
 	public void testOnlyOne() {
 		ArrayList<String> comb = combinations("ABC",3);
 		assertEquals("Incorrect number of combinations.", 1, comb.size());
 		assertEquals("Incorrect combination generated.", "ABC", comb.get(0));
 	}
-	
+
 	@Test
 	public void testNoneEmptyInput() {
 		ArrayList<String> comb = combinations("",2);
 		assertEquals("Incorrect number of combinations.", 0, comb.size());
 	}
-	
+
 	@Test
 	public void testNoneKTooLarge() {
 		ArrayList<String> comb = combinations("ABC",4);
 		assertEquals("Incorrect number of combinations.", 0, comb.size());
 	}
-	
+
 	@Test
 	public void testABC1() {
 		ArrayList<String> comb = combinations("ABC",1);
@@ -92,7 +117,7 @@ public class Combinations {
 		assertTrue("Missing B.", comb.contains("B"));
 		assertTrue("Missing C.", comb.contains("C"));
 	}
-	
+
 	@Test
 	public void testABC2() {
 		ArrayList<String> comb = combinations("ABC",2);
@@ -101,7 +126,7 @@ public class Combinations {
 		assertTrue("Missing AC.", comb.contains("AC"));
 		assertTrue("Missing BC.", comb.contains("BC"));
 	}
-	
+
 	@Test
 	public void testABCD2() {
 		ArrayList<String> comb = combinations("ABCD",2);
@@ -113,7 +138,7 @@ public class Combinations {
 		assertTrue("Missing BD.", comb.contains("BD"));
 		assertTrue("Missing CD.", comb.contains("CD"));
 	}
-	
+
 	@Test
 	public void testABCD3() {
 		ArrayList<String> comb = combinations("ABCD",3);
@@ -123,19 +148,19 @@ public class Combinations {
 		assertTrue("Missing ACD.", comb.contains("ACD"));
 		assertTrue("Missing BCD.", comb.contains("BCD"));
 	}
-	
+
 	@Test
 	public void testABCDE2() {
 		ArrayList<String> comb = combinations("ABCDE",2);
 		assertEquals("Incorrect number of combinations.", 10, comb.size());
 	}
-	
+
 	@Test
 	public void testABCDE3() {
 		ArrayList<String> comb = combinations("ABCDE",3);
 		assertEquals("Incorrect number of combinations.", 10, comb.size());
 	}
-	
+
 	@Test
 	public void testABCDE4() {
 		ArrayList<String> comb = combinations("ABCDE",4);
