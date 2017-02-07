@@ -25,4 +25,10 @@ public class CountingPairsTest extends StdioTestBase {
 		runTest(CountingPairs.class, input, output,
 				"Incorrect result for sample input 2.");
 	}
+	
+	//N == 0, 2digits
+	//K == 0, some # in b/w, 2500 (2500, 0 elements)
+	//all same # in the 2nd line
+	//N == 5000
+	
 }

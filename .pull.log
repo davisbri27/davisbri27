@@ -1,40 +1,29 @@
-02/06/17 09:36:41
-brionadavis
+02/07/17 15:16:00
+davisbri
 
 **** Pulling from GitHub **** 
 git pull
 
 From https://github.com/DickinsonCollege/davisbri232Code
-   6639489..1f1e539  master     -> origin/master
-Merge made by the 'recursive' strategy.
- src/lab01/Comments.txt      |   0
- src/lab01/Rubric.txt        |  46 +++++++++++
- src/lab01/WordAnalyzer.java |  56 ++++++++++---
- src/lab01/answers           | 190 ++++++++++++++++++++++++++++++++++++++++++++
- 4 files changed, 279 insertions(+), 13 deletions(-)
- create mode 100644 src/lab01/Comments.txt
- create mode 100644 src/lab01/Rubric.txt
- create mode 100644 src/lab01/answers
+   5244923..5ffc956  master     -> origin/master
+Updating 5244923..5ffc956
+Fast-forward
+ .push.log | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 	Successfully pulled from GitHub.
 
 git status
 
 On branch master
-Your branch is ahead of 'origin/master' by 3 commits.
-  (use "git push" to publish your local commits)
+Your branch is up-to-date with 'origin/master'.
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git checkout -- <file>..." to discard changes in working directory)
 
-	modified:   .push.log
-
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-
-	.pull.log
+	modified:   .pull.log
 
 no changes added to commit (use "git add" and/or "git commit -a")
 
 Successfully pulled changes from GitHub to:
-	/Users/brionadavis/Documents/davisbri232Code
+	/Users/davisbri/documents/davisbri232Code
