@@ -1,0 +1,8 @@
+1 +
+2 +, in some sense your code counts x's with a preceding x double, but it works out the same
+3 +
+4 +
+5 +, good
+6 +
+7 +
+8 +
