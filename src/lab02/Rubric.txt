@@ -1,0 +1,64 @@
+Lab #2 - Introductory Problems
+
+Score:	46 / 48 = %
+
+Range Finder:
+
+ 15 / 15	-	Correctness
+  	  										Passes
+  	Test Name:								Y	N
+  	-----------------------------------------------
+  	Sample Input 1							X
+  	Values in Decreasing Order				X
+  	All Equal Values						X
+  	All Negative Inputs						X
+  	Single Zero 							X
+  	All Zeros								X
+  	Smallest before Largest 				X
+  	Largest before Smallest					X
+  	Duplicate minimum value					X
+  	Duplicate maximum value					X
+  	Positive and negative values			X
+  	Two Values in Increasing Order			X
+  	Two Values in Decreasing Order			X
+  	Stress Test								X
+  	Large Input Test						X
+  
+ 3 / 3	-	Code Quality
+
+ 3 / 3	-	Documentation/Readability
+
+ 3 / 3	-	Testing Quality
+
+Mean Means:
+
+ 12 / 13	-	Correctness
+  											Passes
+  	Test Name:								Y	N
+  	-----------------------------------------------
+  	Sample Input 1							X
+  	Sample Input 2							X
+  	Ave of all Not Same as Ave of Aves		X
+  	Only one line of input					X
+  	One line with one value					X
+  	Many lines one value each				X
+  	Line with negative numbers				X
+  	Line with pos and neg numbers			X
+  	Line starts with -1						X
+  	Line has multiple -1's					X
+  	Line ends with -1						X
+  	Result rounds to .00						X
+  	Stress Test								X
+  	
+ 3 / 3	-	Code Quality
+
+ 3 / 3	-	Documentation/Readability
+
+ 2 / 3	-	Testing Quality
+  
+ 2 / 2	- 	Additional Requirements
+  											Satisfied
+  	Requirement								Y	N
+  	------------------------------------------------
+  	>=1 test reads input from text file		X
+	>=1 test reads output from text file	X

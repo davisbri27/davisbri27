@@ -1,0 +1,20 @@
+
+Range Finder:
+  * Change the comments on the tests.  
+
+Mean Means:
+
+  * Change the comments 
+  
+  * Thorough testing should also include at least:
+	  * one case where the result rounds off to .x0 or .00 
+	    to test the output formatting.
+	  * one case where there is only one line of input values.
+
+
+General Comments:
+
+
+  * Each test should contain a block comment explaining the purpose of the test.
+	
+	
