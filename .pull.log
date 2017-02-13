@@ -1,15 +1,10 @@
-02/07/17 15:16:00
+02/12/17 19:10:42
 davisbri
 
 **** Pulling from GitHub **** 
 git pull
 
-From https://github.com/DickinsonCollege/davisbri232Code
-   5244923..5ffc956  master     -> origin/master
-Updating 5244923..5ffc956
-Fast-forward
- .push.log | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Already up-to-date.
 
 	Successfully pulled from GitHub.
 

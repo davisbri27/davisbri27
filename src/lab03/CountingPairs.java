@@ -1,7 +1,6 @@
 package lab03;
 
-import java.util.HashMap;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * 
@@ -11,19 +10,17 @@ import java.util.Scanner;
  *
  */
 public class CountingPairs {
-	private int valN, valK; //
-	private String[] numbers;
-	private int[] data;
-	private HashMap<Integer, Boolean> hashmap;
-	public final static int MAX_K = 2500; // Maximum value of some integer K.
+	private int valN, valK; // value of K and N
+	private ArrayList<Integer> nums;	// Number elements of the second line into an arraylist.
+	private HashMap<Integer, Integer> hashmap;
 
 	/**
 	 * Construct a new CountingPairs object and initialize an array of int with
 	 * random size.
 	 */
 	public CountingPairs() {
-		data = new int[10];
-		hashmap = new HashMap<Integer, Boolean>();
+		nums = new ArrayList<Integer>();
+		hashmap = new HashMap<Integer, Integer>();
 	}
 
 	/**
@@ -31,39 +28,16 @@ public class CountingPairs {
 	 */
 	public void readFile() {
 		Scanner scr = new Scanner(System.in);
-		String line = scr.nextLine();
-		numbers = line.split(" ");
-		// Call this method to initialize values of N and K.
-		setFirstLine();
+		//First the first line contains two integers, values of N and K, respectively..
+		valN = scr.nextInt();
+		valK = scr.nextInt();
 
-		while (scr.hasNextLine()) {
-			line = scr.nextLine();
-			numbers = line.split(" ");
+		//read off all elements in the file until it reaches the end.
+		for (int i = 0; i < valN; i++) {
+			nums.add(scr.nextInt());
 		}
-
-		setSecondLine();
 
 		scr.close();
-	}
-
-	/**
-	 * First line contains values of N and K. sets the values, respectively.
-	 */
-	public void setFirstLine() {
-		valN = Integer.parseInt(numbers[0]);
-		valK = Integer.parseInt(numbers[1]);
-	}
-
-	/**
-	 * Set data with new length of the second line, put the values into data.
-	 */
-	public void setSecondLine() {
-
-		data = new int[numbers.length];
-		for (int i = 0; i < numbers.length; i++) {
-			data[i] = Integer.parseInt(numbers[i]);
-		}
-
 	}
 
 	/**
@@ -76,17 +50,39 @@ public class CountingPairs {
 		int count = 0;
 
 		for (int i = 0; i < valN; i++) {
-			hashmap.put(data[i], true);
+			if (hashmap.containsKey(nums.get(i))) {
+				hashmap.put(nums.get(i), hashmap.get(nums.get(i)) + 1);
+			} else {
+				hashmap.put(nums.get(i), 1);
+			}
 		}
 
+		Set<Integer> key = hashmap.keySet();
+		for (Integer x : key) {
+			if (valK == 0) {
+				count += hashmap.get(x) * (hashmap.get(x) - 1) / 2;
+			}
+			else if (x - valK >= 0 && hashmap.containsKey(x - valK)) {
+				count += hashmap.get(x) * hashmap.get(x - valK);
+			}
+		}
+		/*
+		 * Deleted 2/12/2017
 		for (int i = 0; i < valN; i++) {
 			int x = data[i];
-			if (x - valK >= 0 && hashmap.containsKey(x - valK))
+			if (valK == 0) {
+
+			}
+			if (x - valK >= 0 && hashmap.containsKey(x - valK)) {
 				count++;
-			if (x + valK < MAX_K && hashmap.containsKey(x + valK))
+				hashmap.remove(x);
+			}
+			if (x + valK < MAX_K && hashmap.containsKey(x + valK)) {
 				count++;
-			hashmap.remove(x); // redundancy
+				hashmap.remove(x); // redundancy
+			}
 		}
+		*/
 
 		return count;
 	}
