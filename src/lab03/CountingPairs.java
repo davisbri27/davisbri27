@@ -11,16 +11,16 @@ import java.util.*;
  */
 public class CountingPairs {
 	private int valN, valK; // value of K and N
-	private ArrayList<Integer> nums;	// Number elements of the second line into an arraylist.
-	private HashMap<Integer, Integer> hashmap;
+	private ArrayList<Long> nums;	// Number elements of the second line into an arraylist.
+	private HashMap<Long, Long> hashmap;
 
 	/**
 	 * Construct a new CountingPairs object and initialize an array of int with
 	 * random size.
 	 */
 	public CountingPairs() {
-		nums = new ArrayList<Integer>();
-		hashmap = new HashMap<Integer, Integer>();
+		nums = new ArrayList<Long>();
+		hashmap = new HashMap<Long, Long>();
 	}
 
 	/**
@@ -34,7 +34,7 @@ public class CountingPairs {
 
 		//read off all elements in the file until it reaches the end.
 		for (int i = 0; i < valN; i++) {
-			nums.add(scr.nextInt());
+			nums.add((long) scr.nextInt());
 		}
 
 		scr.close();
@@ -53,12 +53,12 @@ public class CountingPairs {
 			if (hashmap.containsKey(nums.get(i))) {
 				hashmap.put(nums.get(i), hashmap.get(nums.get(i)) + 1);
 			} else {
-				hashmap.put(nums.get(i), 1);
+				hashmap.put(nums.get(i), (long) 1);
 			}
 		}
 
-		Set<Integer> key = hashmap.keySet();
-		for (Integer x : key) {
+		Set<Long> key = hashmap.keySet();
+		for (Long x : key) {
 			if (valK == 0) {
 				count += hashmap.get(x) * (hashmap.get(x) - 1) / 2;
 			}

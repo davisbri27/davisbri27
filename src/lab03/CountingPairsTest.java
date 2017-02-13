@@ -49,5 +49,6 @@ public class CountingPairsTest extends StdioTestBase {
 	//N == 5000
 	
 	//all zeros
+	//long # with 50000
 	
 }
