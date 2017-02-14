@@ -1,4 +1,4 @@
-02/13/17 09:59:51
+02/13/17 21:37:37
 davisbri
 
 **** Pulling from GitHub **** 
@@ -17,9 +17,8 @@ Changes not staged for commit:
   (use "git checkout -- <file>..." to discard changes in working directory)
 
 	modified:   .pull.log
-	modified:   src/lab03/CountingPairs.java
 
 no changes added to commit (use "git add" and/or "git commit -a")
 
 Successfully pulled changes from GitHub to:
-	/Users/davisbri/documents/davisbri232code
+	/Users/davisbri/documents/davisbri232Code
