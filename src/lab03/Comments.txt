@@ -1,0 +1,8 @@
+Code quality:
+      
+  * There's no need to cast the result from scr.nextInt()
+    
+Readability/Documentation:
+
+
+Testing:

@@ -1,0 +1,32 @@
+Lab #3 - Counting Pairs
+
+Score:	25 / 25 = %
+
+ 15 / 15	-	Correctness
+  	  										Passes
+  	Test Name:								Y	N
+  	-----------------------------------------------
+  	Sample Input 1							X
+  	Sample Input 2							X
+  	2InputsPairOrdered						X
+  	2InputsPairRevOrdered					X
+  	2InputsNoPairOrdered					X
+  	2InputsNoPairRevOrdered					X
+  	OneDuplicateThatPairs					X
+  	MultipleDuplicateThatPair				X
+  	DuplicatesNoPairs						X
+  	ZeroDifferenceNoPairs					X
+  	ZeroDifferenceOnePair					X
+  	ZeroDifferenceThreeOfSame				X
+  	ZeroDifferenceAllSame					X
+  	ZeroDifference5Same						X
+  	AllSuccessorsPairOrdered				X
+  	AllSuccessorsPairUnordered				X
+  	StressTest								X
+
+ 3 / 3	-	Code Quality
+
+ 3 / 3	-	Documentation/Readability
+
+ 3 / 3	-	Testing Quality
+
