@@ -10,7 +10,7 @@ import java.util.NoSuchElementException;
  * @version Feb 18, 2016
  */
 public class CS232IterableDoublyLinkedList<E> implements CS232List<E>,
-		CS232Iterable<E> {
+CS232Iterable<E> {
 
 	private DLLNode head;
 	private DLLNode tail;
@@ -176,13 +176,23 @@ public class CS232IterableDoublyLinkedList<E> implements CS232List<E>,
 		}
 
 		public boolean hasPrevious() {
+			return cursor.prev != head;
+
+
+
 			// Intentionally not implemented, see HW assignment!
-			throw new UnsupportedOperationException("Not implemented");
+			//throw new UnsupportedOperationException("Not implemented");
 		}
 
 		public E previous() {
-			// Intentionally not implemented, see HW assignment!
-			throw new UnsupportedOperationException("Not implemented");
+			if(!hasPrevious()){
+				// Intentionally not implemented, see HW assignment!
+				throw new UnsupportedOperationException("Not implemented");
+			}else{
+				cursor=cursor.prev;
+				return cursor.element;
+			}
+
 		}
 
 		public void insert(E element) {
@@ -194,11 +204,18 @@ public class CS232IterableDoublyLinkedList<E> implements CS232List<E>,
 		}
 
 		public E remove() {
-			// Intentionally not implemented, see HW assignment!
-			throw new UnsupportedOperationException("Not implemented");
+			if(!hasPrevious()){
+				// Intentionally not implemented, see HW assignment!
+				throw new UnsupportedOperationException("Not implemented");
+			}else{
+				E node= previous();
+				//to be continued 
+			}
+			return null;
 		}
+
 	}
-	
+
 	/**
 	 * Helper method for testing that checks that all of the links are
 	 * symmetric.

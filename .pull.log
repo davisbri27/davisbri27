@@ -1,5 +1,5 @@
-02/13/17 21:37:37
-davisbri
+02/26/17 21:33:09
+brionadavis
 
 **** Pulling from GitHub **** 
 git pull
@@ -17,8 +17,20 @@ Changes not staged for commit:
   (use "git checkout -- <file>..." to discard changes in working directory)
 
 	modified:   .pull.log
+	modified:   .push.log
+	modified:   src/.DS_Store
+	modified:   src/hw03/CS232DoublyLinkedList.java
+	modified:   src/hw03/CS232IterableDoublyLinkedList.java
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	.DS_Store
+	src/hw03/CS232ArrayStack.java
+	src/hw03/CS232Queue.java
+	src/hw03/Pair.java
 
 no changes added to commit (use "git add" and/or "git commit -a")
 
 Successfully pulled changes from GitHub to:
-	/Users/davisbri/documents/davisbri232Code
+	/Users/brionadavis/Documents/davisbri232Code
