@@ -1,5 +1,6 @@
 package hw03;
-
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 /**
  * An implementation of the CS132List interface backed with an array of Objects.
  * 
@@ -7,7 +8,7 @@ package hw03;
  * @author Dickinson College
  * @version Feb 18, 2016
  */
-public class CS232ArrayList<E> implements CS232List<E> {
+public class CS232ArrayList<E> implements CS232List<E> , CS232Iterable<E> {
 
     private static final int INITIAL_CAPACITY = 10;
 
@@ -144,4 +145,69 @@ public class CS232ArrayList<E> implements CS232List<E> {
             return elem;
         }
     }
+
+	@Override
+	public CS232Iterator<E> getIterator() {
+		return new DLLIterator();
+	}
+	private class DLLIterator implements CS232Iterator<E> {
+		private int cursor;
+		
+		
+		public DLLIterator(){
+			cursor=0;
+		}
+		
+		@Override
+		public boolean hasNext() {
+			// TODO Auto-generated method stub
+			return cursor+1 <=size() && cursor+1>=0;
+			
+		}
+
+		@Override
+		public E next() {
+			// TODO Auto-generated method stub
+			if(hasNext()){
+				E el = get(cursor);
+				cursor++;
+				return el;
+			}else{
+				throw new NoSuchElementException();
+			}
+		}
+
+		@Override
+		public boolean hasPrevious() {
+			// TODO Auto-generated method stub
+			
+			return cursor-1 <size() && cursor-1 >=0;
+		}
+
+		@Override
+		public E previous() {
+			if(hasPrevious()){
+				cursor--;
+				return get(cursor); 
+			}else{
+				throw new NoSuchElementException();
+			}
+		}
+
+		@Override
+		public void insert(E element) {
+			// TODO Auto-generated method stub
+			throw new UnsupportedOperationException();
+		}
+
+		@Override
+		public E remove() {
+			// TODO Auto-generated method stub
+			throw new UnsupportedOperationException();
+		}
+
+	
+	
+	
+}
 }

@@ -176,8 +176,9 @@ CS232Iterable<E> {
 		}
 
 		public boolean hasPrevious() {
-			return cursor.prev != head;
-
+			return cursor.prev != null;
+			
+	 
 
 
 			// Intentionally not implemented, see HW assignment!
@@ -187,10 +188,11 @@ CS232Iterable<E> {
 		public E previous() {
 			if(!hasPrevious()){
 				// Intentionally not implemented, see HW assignment!
-				throw new UnsupportedOperationException("Not implemented");
+				throw new NoSuchElementException("No such element");
 			}else{
+				
 				cursor=cursor.prev;
-				return cursor.element;
+				return cursor.next.element;
 			}
 
 		}
