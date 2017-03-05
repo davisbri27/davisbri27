@@ -1,0 +1,55 @@
+Lab #4 - Maze Solver
+
+Score: 23	/ 25 = %
+
+15  / 15	-	Correctness
+  	  										Passes
+  	Test Name:								Y	N
+  	-----------------------------------------------
+  	Sample Input 1							X
+  	Sample Input 2							X
+  	
+   	SolveDownOnly							X
+  	SolveRightOnly							X
+  	SolveUpOnly								X
+  	SolveLeftOnly							X
+  	
+  	SolveDownAndRightOnly					X
+  	SolveRightAndDownOnly					X
+  	SolveDownRightUpOnly					X
+  	SolveDownRightUpLeftMaze				X
+  
+  	SolveCantMoveStartLeft					X
+  	SolveCantMoveStartTop					X
+  	SolveCantMoveStartRight					X
+	SolveCantMoveStartBottom				X
+	
+	SolveDownBTRight						X
+	SolveDownBTLeft							X
+	SolveUpBTRight							X
+	SolveUpBTLeft							X
+	SolveRightBTDown						X
+	SolveRightBTUp							X
+	SolveLeftBTDown							X
+	SolveLeftBTUp							X
+	
+	SolveNoSolutionDownOnly					X
+	SolveNoSolutionUpOnly					X
+	SolveNoSolutionRightOnly				X
+	SolveNoSolutionLeftOnly					X
+	SolveNoSolutionBTRightFirst				X
+	SolveNoSolutionBTLeftFirst				X
+	SolveNoSolutionBTDownFirst				X
+	SolveNoSolutionBTUpFirst				X
+	SolveNoSolutionLoop						X
+	
+	BigMaze1								X
+	BigMaze2								X
+	BigMaze3NoSoln							X
+
+2  / 3	-	Code Quality
+
+3  / 3	-	Documentation/Readability
+
+2  / 3	-	Testing Quality
+

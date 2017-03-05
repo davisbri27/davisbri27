@@ -1,0 +1,25 @@
+
+
+2  / 3	-	Code Quality
+  * Printing the maze would make a nice helper method.
+  
+  * You need to make sure not to backtrack over the start square.
+
+  	  
+3  / 3	-	Documentation/Readability
+  
+        
+2  / 3	-	Testing Quality
+  * To be a little more careful you could be sure to have one test that checks
+    that you can backtrack in each of the possible directions (i.e. encounters
+    a deadend in each possible direction before reaching the exit, or discovering
+    that there is no solution.)
+
+  * The test methods should have  informative names and
+    informative failure messages from the runTest method.
+    The methods that I gave were named something like "testSample1"
+    because they correspond to the sample input(s) from the problem.
+    The names you chose should be descriptive of what is being tested.
+    See the list of test names in the rubric above for some examples,
+    those are the names of the tests in my suite of reference tests
+    that were run against your solution.
