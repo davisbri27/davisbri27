@@ -1,24 +1,95 @@
-02/26/17 21:38:24
+03/09/17 22:26:23
 brionadavis
 
 **** Pulling from GitHub **** 
 git pull
 
-Already up-to-date.
+From https://github.com/DickinsonCollege/davisbri232Code
+   388688f..e9551a6  master     -> origin/master
+Merge made by the 'recursive' strategy.
+ src/lab04/Comments.txt        |  25 +++++
+ src/lab04/MazeSolver.java     | 134 ++++++++++++++++++++++-
+ src/lab04/MazeSolverTest.java | 242 +++++++++++++++++++++++++++++++++++++++++-
+ src/lab04/Rubric.txt          |  55 ++++++++++
+ src/lab04/maze10in.txt        |   6 ++
+ src/lab04/maze10out.txt       |   5 +
+ src/lab04/maze11in.txt        |   6 ++
+ src/lab04/maze11out.txt       |   5 +
+ src/lab04/maze12in.txt        |   6 ++
+ src/lab04/maze12out.txt       |   5 +
+ src/lab04/maze13in.txt        |   6 ++
+ src/lab04/maze14in.txt        |   6 ++
+ src/lab04/maze15in.txt        |   6 ++
+ src/lab04/maze15out.txt       |   5 +
+ src/lab04/maze16in.txt        |   6 ++
+ src/lab04/maze17in.txt        |   6 ++
+ src/lab04/maze18in.txt        |   6 ++
+ src/lab04/maze18out.txt       |   5 +
+ src/lab04/maze19in.txt        |   2 +
+ src/lab04/maze19out.txt       |   1 +
+ src/lab04/maze20in.txt        |   4 +
+ src/lab04/maze21in.txt        |   4 +
+ src/lab04/maze3in.txt         |   6 ++
+ src/lab04/maze4in.txt         |   3 +
+ src/lab04/maze4out.txt        |   2 +
+ src/lab04/maze5in.txt         |   2 +
+ src/lab04/maze5out.txt        |   1 +
+ src/lab04/maze6in.txt         |   3 +
+ src/lab04/maze6out.txt        |   2 +
+ src/lab04/maze7in.txt         |   3 +
+ src/lab04/maze8in.txt         |   6 ++
+ src/lab04/maze8out.txt        |   5 +
+ src/lab04/maze9in.txt         |   6 ++
+ src/lab04/maze9out.txt        |   5 +
+ 34 files changed, 584 insertions(+), 6 deletions(-)
+ create mode 100644 src/lab04/Comments.txt
+ create mode 100644 src/lab04/Rubric.txt
+ create mode 100644 src/lab04/maze10in.txt
+ create mode 100644 src/lab04/maze10out.txt
+ create mode 100644 src/lab04/maze11in.txt
+ create mode 100644 src/lab04/maze11out.txt
+ create mode 100644 src/lab04/maze12in.txt
+ create mode 100644 src/lab04/maze12out.txt
+ create mode 100644 src/lab04/maze13in.txt
+ create mode 100644 src/lab04/maze14in.txt
+ create mode 100644 src/lab04/maze15in.txt
+ create mode 100644 src/lab04/maze15out.txt
+ create mode 100644 src/lab04/maze16in.txt
+ create mode 100644 src/lab04/maze17in.txt
+ create mode 100644 src/lab04/maze18in.txt
+ create mode 100644 src/lab04/maze18out.txt
+ create mode 100644 src/lab04/maze19in.txt
+ create mode 100644 src/lab04/maze19out.txt
+ create mode 100644 src/lab04/maze20in.txt
+ create mode 100644 src/lab04/maze21in.txt
+ create mode 100644 src/lab04/maze3in.txt
+ create mode 100644 src/lab04/maze4in.txt
+ create mode 100644 src/lab04/maze4out.txt
+ create mode 100644 src/lab04/maze5in.txt
+ create mode 100644 src/lab04/maze5out.txt
+ create mode 100644 src/lab04/maze6in.txt
+ create mode 100644 src/lab04/maze6out.txt
+ create mode 100644 src/lab04/maze7in.txt
+ create mode 100644 src/lab04/maze8in.txt
+ create mode 100644 src/lab04/maze8out.txt
+ create mode 100644 src/lab04/maze9in.txt
+ create mode 100644 src/lab04/maze9out.txt
 
 	Successfully pulled from GitHub.
 
 git status
 
 On branch master
-Your branch is up-to-date with 'origin/master'.
+Your branch is ahead of 'origin/master' by 2 commits.
+  (use "git push" to publish your local commits)
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git checkout -- <file>..." to discard changes in working directory)
 
 	modified:   .pull.log
+	modified:   .push.log
 
 no changes added to commit (use "git add" and/or "git commit -a")
 
 Successfully pulled changes from GitHub to:
-	/Users/brionadavis/documents/davisbri232code
+	/Users/brionadavis/Documents/davisbri232Code
