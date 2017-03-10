@@ -132,7 +132,19 @@ public class CS232LinkedBinaryTree<K, V> implements CS232BinaryTree<K, V> {
 	public CS232LinkedBinaryTree(CS232LinkedBinaryTree<K, V> leftSubTree,
 			K key, V value, CS232LinkedBinaryTree<K, V> rightSubTree) {
 		// Intentionally not implemented - see homework assignment.
-		throw new UnsupportedOperationException("Not yet implemented");
+		this(key, value); 
+
+
+		root.left = leftSubTree.root;
+		if (leftSubTree.root != null) {
+			leftSubTree.root.parent = root;
+		}
+
+		root.right = rightSubTree.root;
+		if (rightSubTree.root != null) {
+			rightSubTree.root.parent = root;
+		}
+		size = size + leftSubTree.size() + rightSubTree.size();
 	}
 
 	/**
@@ -146,9 +158,28 @@ public class CS232LinkedBinaryTree<K, V> implements CS232BinaryTree<K, V> {
 	 * {@inheritDoc}
 	 */
 	public boolean contains(K key) {
-		// Intentionally not implemented - see homework assignment.
-		throw new UnsupportedOperationException("Not yet implemented");
+
+
+		return subTreeContains(root, key);
 	}
+
+	/**
+	 * Helper method: check if the subtree rooted at subTreeRoot contains the
+	 * specified key.
+	 */
+	private boolean subTreeContains(BTNode<K, V> subTreeRoot, K key) {
+		if (subTreeRoot == null) {
+			return false; 
+		} else if (subTreeRoot.key.equals(key)) {
+			return true; 
+		} else {
+
+			return subTreeContains(subTreeRoot.left, key)
+					|| subTreeContains(subTreeRoot.right, key);
+
+		}
+	}
+
 
 	/**
 	 * {@inheritDoc}
@@ -195,17 +226,33 @@ public class CS232LinkedBinaryTree<K, V> implements CS232BinaryTree<K, V> {
 	 *            the value.
 	 */
 	public void add(K key, V value) {
-		// Intentionally not implemented - see homework assignment.
-		throw new UnsupportedOperationException("Not yet implemented");
-		
-		/*
-		 * HINT: Use a queue to perform a level order traversal of the tree until a
-		 * node with a missing child is found. At each node (starting with the
-		 * root), if it has no left child, add the new node as the left child
-		 * and be done. If the node has no right child, add the new node as the
-		 * right child and be done. If the node has both children, add them each
-		 * to the queue and repeat with the node from the head of the queue.
-		 */
+		BTNode<K, V> newNode = new BTNode<K, V>(key, value);
+		if (root == null) {
+			root = newNode;
+		} else {
+			Queue<BTNode<K, V>> nodeQ = new LinkedList<BTNode<K, V>>();
+			nodeQ.add(root); 		boolean added = false;
+			while (!added) {
+				BTNode<K, V> cur = nodeQ.remove();
+				if (cur.left == null) {
+
+					cur.left = newNode;
+					newNode.parent = cur;
+					added = true;
+				} else if (cur.right == null) {
+
+					cur.right = newNode;
+					newNode.parent = cur;
+					added = true;
+				} else {
+
+					nodeQ.add(cur.left);
+					nodeQ.add(cur.right);
+				}
+			}
+		}
+		size++;
+
 
 	}
 
@@ -296,9 +343,17 @@ public class CS232LinkedBinaryTree<K, V> implements CS232BinaryTree<K, V> {
 	 * {@inheritDoc}
 	 */
 	public void visitInOrder(CS232Visitor<K, V> visitor) {
-		// Intentionally not implemented - see homework assignment.
-		throw new UnsupportedOperationException("Not yet implemented");
+		subTreeVisitInOrder(root, visitor);
 	}
+	private void subTreeVisitInOrder(BTNode<K, V> subTreeRoot,
+			CS232Visitor<K, V> visitor) {
+		if (subTreeRoot != null) {
+			subTreeVisitInOrder(subTreeRoot.left, visitor);
+			visitor.visit(subTreeRoot.key, subTreeRoot.value);
+			subTreeVisitInOrder(subTreeRoot.right, visitor);
+		}
+	}
+
 
 	/**
 	 * {@inheritDoc}
@@ -354,11 +409,27 @@ public class CS232LinkedBinaryTree<K, V> implements CS232BinaryTree<K, V> {
 	 * @return
 	 */
 	public int countLeafNodes() {
+		return countLeafNodes(root);
 		// Intentionally not implemented - see homework assignment.
-		throw new UnsupportedOperationException("Not yet implemented");
 	}
 
-	/*
+	/**
+	 * Helper method that counts the number of leaves in the subtree rooted at
+	 * subTreeRoot.
+	 */
+	private int countLeafNodes(BTNode<K, V> subTreeRoot) {
+		if (subTreeRoot == null) {
+			return 0; 
+		} else if (subTreeRoot.isLeaf()) {
+			return 1; 
+		} else {
+
+			return countLeafNodes(subTreeRoot.left)
+					+ countLeafNodes(subTreeRoot.right);
+		}
+	}
+
+	/**
 	 * Class that represents a node in a binary tree. Each node holds a key,
 	 * value pair as well as references to its left and right children and its
 	 * parent.

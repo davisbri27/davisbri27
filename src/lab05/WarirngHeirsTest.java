@@ -25,4 +25,14 @@ public class WarirngHeirsTest extends StdioTestBase {
 		runTest(WarringHeirs.class, input, output,
 				"Incorrect result for sample input 2.");
 	}
+	
+	@Test
+	public void testSampleNoAttacks() {
+
+		String input = "5 3 5 1\n 0 2 4 1 3\n0 2 4 1 3\n0 2 4 1 3";
+		String output = "5 3 5 1\n 0 2 4 1 3\n0 2 4 1 3\n0 2 4 1 3";
+		
+		runTest(WarringHeirs.class, input, output,
+				"Incorrect result for sample input with no attacks.");
+	}
 }

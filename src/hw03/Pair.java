@@ -39,7 +39,7 @@ public static void main(String [] args){
 	Double num= 2.0;
 	String word= "hi";
 	
-	Pair intPair= new Pair(intOne, intTwo);
+	Pair<Integer> intPair= new Pair<Integer>( intOne, intTwo);
 	Pair mixPair= new Pair(num, word);
 	Pair pairPair=new Pair(intPair, mixPair);
 }

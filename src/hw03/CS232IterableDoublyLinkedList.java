@@ -206,7 +206,7 @@ CS232Iterable<E> {
 		}
 
 		public E remove() {
-			if(!hasPrevious()){
+		/*	if(!hasPrevious()){
 				// Intentionally not implemented, see HW assignment!
 				throw new UnsupportedOperationException("Not implemented");
 			}else{
@@ -214,7 +214,16 @@ CS232Iterable<E> {
 				//to be continued 
 			}
 			return null;
-		}
+		}*/
+			
+			DLLNode node=null;
+			cursor=node.prev;
+			node.next.prev=node.prev;
+			node.prev.next=node.next;
+			E el=node.element;
+			size--;
+			return el;
+					
 
 	}
 
@@ -244,4 +253,5 @@ CS232Iterable<E> {
 		}
 		return true;
 	}
+}
 }
