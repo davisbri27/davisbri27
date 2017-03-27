@@ -4,3 +4,68 @@ brionadavis
 **** Staging Modifications ****
 git add -A
 
+
+	Successfully added files.
+
+git status
+
+On branch master
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	modified:   .push.log
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   .push.log
+
+
+**** Committing to local Repo ****
+git commit -m Committed by brionadavis @ 03/27/17 01:05:31 --allow-empty
+
+[master fa2eb43] Committed by brionadavis @ 03/27/17 01:05:31
+ Committer: Briona Davis <brionadavis@Brionas-MacBook-Air.local>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+	Successfully committed to local repo
+
+git status
+
+On branch master
+Your branch is ahead of 'origin/master' by 2 commits.
+  (use "git push" to publish your local commits)
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   .push.log
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+****  pushing to GitHub **** 
+git push -u  origin master
+
+To https://github.com/DickinsonCollege/davisbri232Code.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/DickinsonCollege/davisbri232Code.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
