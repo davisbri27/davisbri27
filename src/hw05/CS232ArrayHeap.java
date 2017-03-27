@@ -9,7 +9,7 @@ package hw05;
  * @version March 8, 2016
  */
 public class CS232ArrayHeap<K extends Comparable<K>, V> implements
-		CS232PriorityQueue<K, V> {
+CS232PriorityQueue<K, V> {
 
 	/*
 	 * NOTE: We could implement this directly on top of an array. However that
@@ -57,10 +57,10 @@ public class CS232ArrayHeap<K extends Comparable<K>, V> implements
 			// add the node to the heap.
 			tree.add(new HeapNode<K,V>(keys[i], values[i]));
 		}
-		
+
 		// verify that we have a valid heap!
 		if (!checkHeapProperty()) {
-				throw new IllegalArgumentException("Heap is not valid.");
+			throw new IllegalArgumentException("Heap is not valid.");
 		}
 	}
 
@@ -84,7 +84,7 @@ public class CS232ArrayHeap<K extends Comparable<K>, V> implements
 	private int getParentIndex(int i) {
 		return (i - 1) / 2;
 	}
-	
+
 	/*
 	 * Check if the node at index is a leaf node. A node is a leaf if both of
 	 * its children are not in the tree (i.e. have an index that is >= than the
@@ -112,9 +112,36 @@ public class CS232ArrayHeap<K extends Comparable<K>, V> implements
 		 */
 
 		// Intentionally not implemented - see homework assignment.
-		throw new UnsupportedOperationException("Not yet implemented");
-	}
+		//throw new UnsupportedOperationException("Not yet implemented");
 
+
+
+
+
+		HeapNode<K,V> element= new HeapNode<K,V>(key, value);
+
+		if(tree.size()==0){
+			tree.insert(0, element);
+
+		}else{
+			tree.insert(tree.size(), element);
+			int cur= tree.size()-1;
+
+			while(cur>0){
+				int parent=getParentIndex(cur);
+				if(tree.get(parent).key.compareTo(tree.get(cur).key)<0){
+					swap(parent, cur);
+
+				}
+				cur=parent;
+			}
+
+
+
+		}
+
+
+	}
 	/*
 	 * Helper method that swaps two elements of the tree.
 	 */
@@ -224,7 +251,7 @@ public class CS232ArrayHeap<K extends Comparable<K>, V> implements
 	 */
 	public void adjustPriority(V value, K newKey) {
 		// Intentionally not implemented - see homework assignment.
-		throw new UnsupportedOperationException("Not yet implemented");
+		//throw new UnsupportedOperationException("Not yet implemented");
 
 		/*
 		 * Find the node with the value (Hint - just search the array!), replace
@@ -234,6 +261,24 @@ public class CS232ArrayHeap<K extends Comparable<K>, V> implements
 		 * out of remove, you can use those to methods to move the node to a
 		 * proper location.
 		 */
+
+		if(tree.size()==0){
+			throw new IllegalStateException();
+		}else{
+
+			int index=-1;
+			for(int i=0; i< tree.size(); i++){
+				if(tree.get(i).value == value){
+					
+					index=i;
+				}
+			}
+			if(index> -1){
+				tree.remove(index);
+				add(newKey, value);
+			}
+		}
+
 	}
 
 	/**

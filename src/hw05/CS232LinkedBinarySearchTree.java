@@ -15,7 +15,7 @@ import java.util.NoSuchElementException;
  * @version March 10, 2016
  */
 public class CS232LinkedBinarySearchTree<K extends Comparable<K>, V> extends
-		CS232LinkedBinaryTree<K, V> {
+CS232LinkedBinaryTree<K, V> {
 
 	/*
 	 * NOTE: We inherit the size and root fields, and the BTNode class from the
@@ -102,18 +102,49 @@ public class CS232LinkedBinarySearchTree<K extends Comparable<K>, V> extends
 	/**
 	 * {@inheritDoc}
 	 */
-	public V get(K key) {
-		// Intentionally not implemented - see homework assignment.
-		throw new UnsupportedOperationException("Not yet implemented");
+	public V get(K key){
+		return get(key, root ).value;
 	}
+
+
+	public BTNode<K,V> get(K key, BTNode<K,V> cur) {
+		// Intentionally not implemented - see homework assignment.
+		//throw new UnsupportedOperationException("Not yet implemented");
+
+		if(cur==null){
+			return null;
+		}
+		if(cur.key.equals(key)){
+			return cur;
+		}else if(cur.key.compareTo(key)<0){
+			cur=cur.right;
+			return get(key, cur);
+		}else{
+			cur=cur.left; 
+			return get(key,cur);
+		}
+
+	}
+
+
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public void set(K key, V value) {
 		// Intentionally not implemented - see homework assignment.
-		throw new UnsupportedOperationException("Not yet implemented");
+		//throw new UnsupportedOperationException("Not yet implemented");
+		
+		BTNode<K,V> node= get(key,root);
+		if(node!=null){
+			node.value=value;
+		}else{
+			throw new NoSuchElementException();
+		}
+		
 	}
+		
+		
 
 	/**
 	 * {@inheritDoc}
@@ -174,7 +205,39 @@ public class CS232LinkedBinarySearchTree<K extends Comparable<K>, V> extends
 	 */
 	public V remove(K key) {
 		// Intentionally not implemented - see homework assignment.
-		throw new UnsupportedOperationException("Not yet implemented");
+		//throw new UnsupportedOperationException("Not yet implemented");
+		
+		//case 1: if remove root
+		if(root.equals(get(key,root))){
+			V removeVal=root.value;
+			BTNode<K,V> newRoot= root;
+			newRoot=newRoot.right;
+			
+			while(!newRoot.isLeaf()){
+				newRoot= newRoot.left;
+			}
+			root.value=newRoot.value;
+			root.key=newRoot.key;
+			newRoot.parent=null;
+			
+			return removeVal;		
+			
+		}else if(size==0){
+			throw new NullPointerException();	
+			
+		}else {
+			
+		if(size==1){
+			if(contains(key)){
+				V removeVal=root.value;
+				root=null;
+				return removeVal;
+			}
+		}
+		}
+		
+		
+		
 	}
 
 	/*
