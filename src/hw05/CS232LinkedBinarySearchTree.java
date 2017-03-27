@@ -225,16 +225,14 @@ CS232LinkedBinaryTree<K, V> {
 		}else if(size==0){
 			throw new NullPointerException();	
 			
-		}else {
-			
-		if(size==1){
+		}else if(size==1){
 			if(contains(key)){
 				V removeVal=root.value;
 				root=null;
 				return removeVal;
 			}
 		}
-		}
+			..to be continued. 
 		
 		
 		

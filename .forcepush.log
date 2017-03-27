@@ -4,3 +4,82 @@ brionadavis
 **** Staging Modifications ****
 git add -A
 
+
+	Successfully added files.
+
+git status
+
+On branch master
+Your branch is ahead of 'origin/master' by 2 commits.
+  (use "git push" to publish your local commits)
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	new file:   .forcepush.log
+	modified:   .push.log
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   .forcepush.log
+
+
+**** Committing to local Repo ****
+git commit -m Committed by brionadavis @ 03/27/17 01:07:29 --allow-empty
+
+[master 3fdca7e] Committed by brionadavis @ 03/27/17 01:07:29
+ Committer: Briona Davis <brionadavis@Brionas-MacBook-Air.local>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 2 files changed, 71 insertions(+)
+ create mode 100644 .forcepush.log
+
+	Successfully committed to local repo
+
+git status
+
+On branch master
+Your branch is ahead of 'origin/master' by 3 commits.
+  (use "git push" to publish your local commits)
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   .forcepush.log
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+****  forcepushing to GitHub **** 
+git push -u -f origin master
+
+To https://github.com/DickinsonCollege/davisbri232Code.git
+ + ccfa653...3fdca7e master -> master (forced update)
+Branch master set up to track remote branch master from origin.
+
+	Successfully forcepushed to GitHub repo
+
+git status
+
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   .forcepush.log
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+Successfully forcepushed to GitHub all changes in:
+	/Users/brionadavis/Documents/davisbri232Code
