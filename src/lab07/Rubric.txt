@@ -1,0 +1,48 @@
+Lab #7 - Ferry Boat
+
+Score:	24.5/ 25 = %
+
+15+1  / 15	-	Correctness
+  	  										Passes
+  	Test Name:								Y	N
+  	-----------------------------------------------
+  	Sample Input 1							X
+  	Sample Input 2							X
+  	Sample Input 3							X
+  	
+	ListAllLeftFirstSingleCarAtATime		X
+	ListAllLeftFirstPairsOfCarsAtATime		X	
+	ListAllRightFirstSingleCarAtATime		X
+	ListAllRightFirstPairsOfCarsAtATime		X
+	AltListLeftFirstAllSingleCars			X
+	AltListRightFirstAllSingleCars			X
+		
+	RightTerminalInitiallyEmpty				X
+	LeftTerminalInitiallyEmpty				X
+	RightTerminalEmptiesFirst				X
+	LeftTerminalEmptiesFirst				X
+	
+	TakeMultiplesFromLeftOnLaterTrip		X
+	TakeMultiplesFromRightOnLaterTrip		X
+	TakeManyFromLeft						X
+	TakeManyFromRight						X
+	TakeAllFromLeftOnOneTrip				X
+	TakeAllFromRightOnOneTrip				X
+	
+	SingleExactLengthMatchOnLeft			X
+	MultipleMakeExactLengthMatchOnLeft		X
+	SingleExactLengthMatchOnRight			X
+	MultipleMakeExactLengthMatchOnRight		X
+	
+	Random Stress Test						X
+
+2.5  / 3	-	Code Quality
+The init method should be part of the constructor.  
+leftToRight and rightToLeft should be the same method with different arguments.  
+
+2.5  / 3	-	Documentation/Readability
+The car class should be capitalized.  
+
+  
+2.5  / 3	-	Testing Quality
+You should have a test with the maximum number of cars.  
