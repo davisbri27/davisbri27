@@ -158,16 +158,23 @@ public class CS232LinkedAVLTree<K extends Comparable<K>, V> extends
 						rotateLeft(startNode);
 					}
 					else {
-						// Intentionally not implemented - see homework
-						// assignment.
-						throw new UnsupportedOperationException(
-								"Necessary rotation not yet implemented");
+						// Case RL
+						
+						rotateRight((AVLNode<K, V>) startNode.right);
+						rotateLeft(startNode);
+						
 					}
-				} else {
-					// Intentionally not implemented - see homework
-					// assignment.
-					throw new UnsupportedOperationException(
-							"Necessary rotation not yet implemented");
+				} else { // if the startNode is LeftHeavy
+					if(((AVLNode<K, V>) startNode.left).isLeftHeavy()){
+						// Case LL :must rotate right
+						rotateRight(startNode);
+					} else {
+					
+					//Case LR:	
+					
+					rotateLeft((AVLNode<K, V>) startNode.left);
+					rotateRight(startNode);
+					}
 				}
 			}
 
@@ -200,7 +207,6 @@ public class CS232LinkedAVLTree<K extends Comparable<K>, V> extends
 		if (xrl != null) {
 			xrl.parent = x;
 		}
-
 		// xr becomes root of sub tree
 		if (px == null) {
 			// we rotated about the root, so xr is new root.
@@ -223,13 +229,47 @@ public class CS232LinkedAVLTree<K extends Comparable<K>, V> extends
 		xr.height = computeNodeHeightFromChildren(xr);
 		xr.balance = computeNodeBalance(xr);
 	}
-
 	/*
 	 * Perform a rotation about the specified node.
 	 */
 	private void rotateRight(AVLNode<K, V> node) {
-		// Intentionally not implemented - see homework assignment.
-		throw new UnsupportedOperationException("Not yet implemented");
+		// local variables reflect the notation used on the slides.
+				AVLNode<K, V> x = node;
+				AVLNode<K, V> xl = (AVLNode<K, V>) x.left;
+				AVLNode<K, V> xlr = (AVLNode<K, V>) xl.right; // may be null.
+				AVLNode<K, V> px = (AVLNode<K, V>) x.parent;
+				
+				//x becomes xl's right child
+				xl.right= x;
+				x.parent=xl;
+				
+				//xlr becomes x's left child
+				x.left=xlr;
+				if(xlr != null){
+					xlr.parent=x;
+				}
+				
+				//xl becomes root of subtree
+				if(px==null){
+					root=xl;
+				}else{
+					if(px.left==x){
+						px.left=xl;
+					}else{
+						px.right=xl;
+					}
+				}
+				xl.parent=px;
+				// recompute heights and balances that changed.
+				x.height = computeNodeHeightFromChildren(x);
+				x.balance = computeNodeBalance(x);
+
+				xl.height = computeNodeHeightFromChildren(xl);
+				xl.balance = computeNodeBalance(xl);
+		
+		
+		
+		
 	}
 
 	/**
