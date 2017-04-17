@@ -1,5 +1,7 @@
 package hw07;
 
+import hw07.CS232ArrayHeap.HeapNode;
+
 /**
  * Implementation of the CS232PriorityQueue interface that uses a binary heap
  * with an array backing store.
@@ -53,12 +55,32 @@ public class CS232ArrayHeap<K extends Comparable<K>, V> implements
 			tree.add(new HeapNode<K,V>(keys[i], values[i]));
 		}
 		
+		
+		
+		heapify(keys, values);
+		
+		
+		
 		// verify that we have a valid heap!
 		if (!checkHeapProperty()) {
 				throw new IllegalArgumentException("Heap is not valid.");
 		}
 	}
 
+	
+	private void heapify(K[] keys, V[] values) {
+		if(keys.length!=1){
+			
+		for(int i=keys.length-1; i>= 0; i--){
+			trickleDown(i);
+			
+		}
+				
+	}
+	}
+
+	
+	
 	/*
 	 * Get the index where the left child of the node at index i is stored.
 	 */
@@ -350,7 +372,7 @@ public class CS232ArrayHeap<K extends Comparable<K>, V> implements
 	/*
 	 * Node used to hold the key,value pair at each location in the heap.
 	 */
-	private static class HeapNode<K, V> {
+	public static class HeapNode<K, V> {
 		public K key;
 		public V value;
 
