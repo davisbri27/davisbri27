@@ -66,7 +66,7 @@ public class CS232OpenHashMap<K, V> implements CS232HashMap<K, V> {
 		if (key == null) {
 			throw new IllegalArgumentException("key cannot be null.");
 		}
-		
+
 		// NOTE: Does not resize. See Homework Assignment!
 
 		KeyValuePair<K, V> kvp = getKeyValuePair(key);
@@ -87,8 +87,35 @@ public class CS232OpenHashMap<K, V> implements CS232HashMap<K, V> {
 			int index = getIndex(key);
 			hashTable[index].insert(0, new KeyValuePair<K, V>(key, value));
 			currentSize++;
+			
+			int loadFactor= size()/capacity();
+			if(loadFactor> MAX_LOAD_FACTOR){
+				hashTable=resize(hashTable);
+			}
 		}
 	}
+
+	private CS232IterableDoublyLinkedList<KeyValuePair<K, V>>[] resize(CS232IterableDoublyLinkedList<KeyValuePair<K, V>>[] ht) {
+		
+		CS232IterableDoublyLinkedList<KeyValuePair<K, V>>[] temp= (CS232IterableDoublyLinkedList<KeyValuePair<K, V>>[]) new CS232IterableDoublyLinkedList<?>[INITIAL_CAPACITY*2];
+		for (int i = 0; i < temp.length; i++) {
+			temp[i] = new CS232IterableDoublyLinkedList<KeyValuePair<K, V>>();
+		}
+		for(int i=0; i< ht.length;i++){
+			CS232Iterator<KeyValuePair<K, V>> it = ht[i].getIterator();
+			
+			while (it.hasNext()) {
+				KeyValuePair<K, V> kvp = it.next();
+				temp[i].insert(0, kvp);
+				
+		
+			}
+		}
+		return temp;
+
+	}
+
+
 
 	/**
 	 * {@inheritDoc}
@@ -106,8 +133,15 @@ public class CS232OpenHashMap<K, V> implements CS232HashMap<K, V> {
 	 * {@inheritDoc}
 	 */
 	public V remove(K key) {
-		// Intentionally not implemented - see homework assignment.
-		throw new UnsupportedOperationException("Not yet implemented");
+		int index= getIndex(key);
+		CS232Iterator<KeyValuePair<K, V>> it = hashTable[index].getIterator();
+		while (it.hasNext()) {
+			KeyValuePair<K, V> kvp = it.next();
+			if (kvp.key.equals(key)) {
+				return (V) it.remove().value;
+			}
+		}
+		 return null;
 	}
 
 	/**

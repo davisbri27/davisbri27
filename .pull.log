@@ -1,4 +1,4 @@
-04/15/17 15:39:01
+04/22/17 17:51:55
 brionadavis
 
 **** Pulling from GitHub **** 
@@ -11,15 +11,13 @@ Already up-to-date.
 git status
 
 On branch master
-Your branch is ahead of 'origin/master' by 3 commits.
-  (use "git push" to publish your local commits)
+Your branch is up-to-date with 'origin/master'.
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git checkout -- <file>..." to discard changes in working directory)
 
 	modified:   .pull.log
 	modified:   .push.log
-	modified:   src/lab09/SalesData.java
 
 no changes added to commit (use "git add" and/or "git commit -a")
 
