@@ -7,6 +7,30 @@ import java.util.Scanner;
 import lab09.CS232LinkedAVLTree.AVLNode;
 import lab09.CS232LinkedBinaryTree.BTNode;
 
+/**
+ * The Acme Corporation needs to do a better job of tracking the performance of
+ * their sales force. They have sales people all over the world selling anvils
+ * and TNT to coyotes. Each time a sales person makes a sale they add the sales
+ * information into the company's computer system. Unfortunately, they do not
+ * all do the entry immediately, so the sales data often arrives out of order.
+ * Sometimes there are mistakes and entire days worth of sales data must be
+ * removed. There will be at most one sales record on any given day.
+ * 
+ * The managers at ACME Corporation would like to take advantage of all of this
+ * data by making queries against it. Some of the things they would like to ask
+ * include: How much was the most recent sale? What was the total of the last k
+ * sales? How much in total sales was made on the k days starting at a given
+ * date? How much in total sales were made between two dates? The specific
+ * operations that must be supported are:
+ * 
+ * A: add a sales record. D: delete the sales record for a given date. S: get
+ * the amount of the most recent sale. K: get the total amount of the k most
+ * recent sales. G: get the total amount of sales in the k days starting on a
+ * given date. R: get the total amount of all sales within a range of dates.
+ * 
+ * @author Briona Davis, Andy Guo
+ *
+ */
 public class SalesData {
 	private CS232LinkedAVLTree<Calendar, Double> tree;
 
@@ -15,17 +39,23 @@ public class SalesData {
 
 	}
 
+	/**
+	 * readFile method reads in the input with a scanner. Different letters
+	 * indicate different objectives. A: add a sales record. D: delete the sales
+	 * record for a given date. S: get the amount of the most recent sale. K:
+	 * get the total amount of the k most recent sales. G: get the total amount
+	 * of sales in the k days starting on a given date. R: get the total amount
+	 * of all sales within a range of dates.
+	 * 
+	 * 
+	 */
 	public void readFile() {
 		Scanner scr = new Scanner(System.in);
 
 		while (scr.hasNext()) {
 			String firstLine = scr.nextLine();
 			String[] separateLine = firstLine.split(" ");
-			// String letter= separateLine[0];
-
 			char letters = firstLine.charAt(0);
-			// Calendar date= getDate(separateLine[1]);
-			// double sales= Double.parseDouble(separateLine[2]);
 
 			if (letters == 'A') {
 				// add to tree
@@ -40,79 +70,147 @@ public class SalesData {
 
 			} else if (letters == 'S') {
 				// get the amount of the most recent sale
-				double most = getMostRecent(tree.root);
-				System.out.println("$" + most);
+				BTNode<Calendar, Double> most = getMostRecent(tree.root);
+				if (most == null) {
+					System.out.println("$0.00");
+				} else {
+					System.out.println("$" + most.value);
+				}
 
 			} else if (letters == 'K') {
 				// get the total amount of the k most recent sales
 				int k = Integer.parseInt(separateLine[1]);
-				//System.out.println(k);
-
 				double total = getTotalMostRecent(tree.root, k);
-				System.out.println("$" + total);
+				String roundedSales = String.format("%.2f", total);
+				System.out.println("$" + roundedSales);
 
 			} else if (letters == 'G') {
-				Calendar date = getDate(separateLine[1]);
-				int k = Integer.parseInt(separateLine[2]);
 				// get the total amount of sales in the k days starting on a
 				// given date
+				Calendar date = getDate(separateLine[1]);
+				int k = Integer.parseInt(separateLine[2]);
 				double sales = getAtStartingDate(date, k);
-				System.out.println("$" + sales);
+				String roundedSales = String.format("%.2f", sales);
+				System.out.println("$" + roundedSales);
+
 			} else if (letters == 'R') {
 				// get the total amount of all sales within a range of dates
 				Calendar startDate = getDate(separateLine[1]);
 				Calendar endDate = getDate(separateLine[2]);
 				double sales = getSalesInRange(startDate, endDate);
-				System.out.println("$" + sales);
+				String roundedSales = String.format("%.2f", sales);
+				System.out.println("$" + roundedSales);
 			}
 
 		}
-
+		scr.close();
 	}
 
+	/**
+	 * getSalesInRange takes in a startDate and an endDate to determine the
+	 * total sales within the range of these dates.
+	 * 
+	 * @param startDate
+	 *            of the range
+	 * @param endDate
+	 *            of the range
+	 * @return sales the total sales
+	 */
 	private double getSalesInRange(Calendar startDate, Calendar endDate) {
-		double sales = 0;
-		BTNode<Calendar, Double> curNode = tree.getNodeWithKey(tree.root, startDate);
-		while (curNode.key.compareTo(endDate) == -1) { // while the date of the
-														// current node is less
-														// than the end date
-			sales += curNode.value;
-			curNode = successor(curNode, tree.root);
-
+		if(startDate.compareTo(endDate)>0){
+			GregorianCalendar temp= (GregorianCalendar) startDate;
+			endDate=startDate;
+			startDate=temp;
 		}
-		return sales;
+		BTNode<Calendar, Double>curDate= tree.getNodeWithKey(tree.root, startDate);
+		if(curDate==null){
+			tree.add(startDate, new Double(0));
+			curDate=tree.getNodeWithKey(tree.root, startDate);
+			
+			
+		}
+		
+		double total= new Double(0);
+		while(curDate != null && curDate.key.compareTo(endDate)<=0){
+			total+= curDate.value;
+			curDate= successor(curDate, tree.root);
+			
+		}
+		return total;
+		
+		
+		/*double sales = 0;
+		if (tree.getNodeWithKey(tree.root, startDate) != null) { // if the start
+																	// date is
+																	// not null
+			BTNode<Calendar, Double> curNode = tree.getNodeWithKey(tree.root, startDate);
+			while (curNode.key.compareTo(endDate) <= 0) {
+				// while the date of the current node is less or equal to than
+				// the end date
+				sales += curNode.value;
+				curNode = successor(curNode, tree.root);
 
-	}
-
-	public double getAtStartingDate(Calendar startDate, int k) {
-
-		int i = 0;
-		double sales = 0;
-		BTNode<Calendar, Double> curNode = tree.getNodeWithKey(tree.root, startDate);
-		while (i < k) {
-			// find successor
-			BTNode<Calendar, Double> successorNode = successor(curNode, tree.root);
-			if (successorNode != null) {
-				sales += successorNode.value;
-				i++;
-				curNode = successorNode;
-			} else {
-				i = k; // no successor, stop while loop
 			}
-		}
+		} else {
+			tree.add(startDate, 0.00);
+			BTNode<Calendar, Double> curNode = tree.getNodeWithKey(tree.root, startDate);
+			while (curNode.key.compareTo(endDate) <= 0) {
+				// while the date of the current node is less or equal to than
+				// the end date
+				sales += curNode.value;
+				curNode = successor(curNode, tree.root);
 
+			}
+			tree.remove(startDate);
+
+		}
+		return sales;*/
+	}
+
+	/**
+	 * getAtStartingDate get the total amount of sales in the k days starting on
+	 * a given date recent sales.
+	 * 
+	 * @param date
+	 *            the starting date
+	 * @param k
+	 *            days
+	 * @return sales total sales
+	 */
+	public double getAtStartingDate(Calendar date, int k) {
+		Calendar startDate = (Calendar) date.clone(); // start date
+		date.add(Calendar.DAY_OF_MONTH, k);
+		Calendar endDate = date; // end date
+
+		double sales = 0.00;
+		while (startDate.compareTo(endDate) < 0) {
+
+			if (tree.getNodeWithKey(tree.root, startDate) != null) {
+				sales += tree.getNodeWithKey(tree.root, startDate).value;
+			}
+			startDate.add(Calendar.DAY_OF_MONTH, 1);
+
+		}
 		return sales;
 
 	}
 
+	/**
+	 * successor takes in a node and the root to determine the successor of the
+	 * node with in-order traversal.
+	 * 
+	 * @param node
+	 * @param root
+	 * @return successor of the node
+	 */
 	public BTNode<Calendar, Double> successor(BTNode<Calendar, Double> node, BTNode<Calendar, Double> root) {
 		// check if is it is the largest element in the tree by using
-		// getMax method
-		if (getMax(root).equals(node)) {
-			System.out.println("No successor");
+		// getMostRecent method
+		if (getMostRecent(root).equals(node)) {
+			
 			return null;
 		} else if (node.isLeaf() || node.right == null) { // if the node is a
-															// leaf
+			// leaf
 			while (node.parent.key.compareTo(node.key) < 0) {
 				node = node.parent;
 			}
@@ -127,6 +225,14 @@ public class SalesData {
 		}
 	}
 
+	/**
+	 * predecessor takes in a node and the root to determine the predecessor of
+	 * the node with in-order traversal.
+	 * 
+	 * @param node
+	 * @param root
+	 * @return predecessor of the node
+	 */
 	public BTNode<Calendar, Double> predecessor(BTNode<Calendar, Double> node, BTNode<Calendar, Double> root) {
 		// if smallest of the tree, return null
 		if (findSmallest(root).equals(node)) {
@@ -147,20 +253,36 @@ public class SalesData {
 		}
 	}
 
+	/**
+	 * getTotalMostRecent, taking in a node and an integer k, gets the total
+	 * amount of the k most recent sales.
+	 * 
+	 * @param node
+	 * @param k
+	 * @return total sales
+	 */
 	private double getTotalMostRecent(BTNode<Calendar, Double> node, int k) {
 		int i = 0;
 		double total = 0;
-		BTNode<Calendar, Double> last = getMax(tree.root);
+		if (getMostRecent(tree.root) != null) {
+			BTNode<Calendar, Double> last = getMostRecent(tree.root);
 
-		while (i < k) {
-			total += last.value;
-			last = predecessor(last, tree.root);
-			i++;
+			while (i < k) {
+				total += last.value;
+				last = predecessor(last, tree.root);
+				i++;
+			}
 		}
 
 		return total;
 	}
 
+	/**
+	 * findSmallest finds the node with the smallest key in the tree
+	 * 
+	 * @param node
+	 * @return node the smallest
+	 */
 	private BTNode<Calendar, Double> findSmallest(BTNode<Calendar, Double> node) {
 		if (tree.size == 0) {
 			return null;
@@ -170,14 +292,22 @@ public class SalesData {
 			if (node.left == null) {
 				return node;
 			}
-		while (node.left != null) {
-			node = node.left;
-		}
-		return node;
+			while (node.left != null) {
+				node = node.left;
+			}
+			return node;
 		}
 	}
 
-	private BTNode<Calendar, Double> getMax(BTNode<Calendar, Double> node) {
+	/**
+	 * getMostRecent finds the largest node in the tree. In this particular case
+	 * with the key being the date, the method returns the node with the most
+	 * recent date
+	 * 
+	 * @param node
+	 * @return node with the most recent date
+	 */
+	private BTNode<Calendar, Double> getMostRecent(BTNode<Calendar, Double> node) {
 		if (tree.size == 0) {
 			return null;
 		} else if (tree.size == 1) {
@@ -193,28 +323,12 @@ public class SalesData {
 		}
 	}
 
-	private double getMostRecent(BTNode<Calendar, Double> node) {
-		/*
-		 * while(node.right!=null){ node=node.right; } return node.parent.value;
-		 */
-
-		/*
-		 * while(!node.isLeaf()){ if(node.right!=null){ node=node.right; } }
-		 * return node.value;
-		 */
-
-		while (!node.isLeaf()) {
-
-			if (node.right != null) {
-				node = node.right;
-			} else if (node.left != null) {
-				node = node.left;
-			}
-
-		}
-		return node.value;
-	}
-
+	/**
+	 * getDate gets the date
+	 * 
+	 * @param str
+	 * @return cal the date in calendar
+	 */
 	public GregorianCalendar getDate(String str) {
 		String[] date = str.split("/");
 		int month = Integer.parseInt(date[0]);

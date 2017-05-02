@@ -31,4 +31,62 @@ public class RegistrationSystemTest extends StdioTestBase {
 		runTest(RegistrationSystem.class, input, output,
 				"Incorrect result for sample input 3.");
 	}
+	
+	@Test
+	public void testAskUserNotInSystem(){
+		String input = "A benrush Benjamin Rush\nI andyiscool";
+		String output = "OK\nAVAILABLE";
+
+		runTest(RegistrationSystem.class, input, output,
+				"Incorrect result for available.");
+	}
+	@Test
+	public void testAvailable1(){
+		String input = "A benrush Benjamin Rush\nA benrush Fake Dude\nI benrush1";
+		String output = "OK\nbenrush1\nFake Dude";
+
+		runTest(RegistrationSystem.class, input, output,
+				"Incorrect result for available1.");
+	}
+	@Test
+	public void testAvailable2(){
+		String input = "A benrush Benjamin Rush\nA benrush Fake Dude\nA benrush BriBri\nD benrush2\nI benrush2";
+		String output = "OK\nbenrush1\nbenrush2\nAVAILABLE";
+
+		runTest(RegistrationSystem.class, input, output,
+				"Incorrect result for sample available2.");
+	}
+	@Test
+	public void testDeleteAdd(){
+		String input = "A benrush Benjamin Rush\nA benrush Fake Dude\nD benrush2\nA benrush Bri\nI benrush2";
+		String output = "OK\nbenrush1\nbenrush2\nBri";
+
+		runTest(RegistrationSystem.class, input, output,
+				"Incorrect result for sample deleteAdd.");
+	}
+	@Test
+	public void testbenrush11(){
+		String input = "A benrush Benjamin Rush\nA benrush Fake Dude\nA benrush1 Benji\nI benrush11";
+		String output = "OK\nbenrush1\nbenrush11\nBenji";
+
+		runTest(RegistrationSystem.class, input, output,
+				"Incorrect result for sample benrush11.");
+	}
+	@Test
+	public void testbenrush12(){
+		String input = "A benrush Benjamin Rush\nA benrush Fake Dude\nA benrush1 Benji\nA benrush1 LOL\nI benrush12";
+		String output = "OK\nbenrush1\nbenrush11\nbenrush12\nLOL";
+
+		runTest(RegistrationSystem.class, input, output,
+				"Incorrect result for sample benrush12.");
+	}
+	@Test
+	public void testAddThenRemove(){
+		String input = "A benrush Benjamin Rush\nI benrush\nD benrush\nI benrush";
+		String output = "OK\nBenjamin Rush\nAVAILABLE";
+
+		runTest(RegistrationSystem.class, input, output,
+				"Incorrect result for sample test.");
+	}
+	
 }
