@@ -119,7 +119,8 @@ public class CS232ArrayHeap<K extends Comparable<K>, V> implements
 		HeapNode<K,V> addedNode = new HeapNode<K,V>(key, value);
 		tree.add(addedNode);
 
-		percolateUp(addedNodeIndex);
+
+		percolateUp(addedNodeIndex);;
 	}
 
 	/*
