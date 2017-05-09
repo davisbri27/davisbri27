@@ -1,0 +1,66 @@
+Lab #9 - Sales Data
+
+Score:	23.5/ 25 = %
+
+Correctness: 15
+  	  											Passes
+  	Test Name:									Y	N
+  	--------------------------------------------------
+	Sample Input 1								X
+	Sample Input 2								X
+	
+	TestSOneSale								X
+	TestSNotMostRecentlyAdded					X
+	TestSManyAdded								X
+	TestSMostRecentSaleAddedFirst				X
+	TestSIsEfficient							X
+	
+	TestDSingleEntryDeleted						X
+	TestDMultipleDeletes						X
+	TestDIntermixedAddAndDelete					X
+	
+	TestK1										X
+	TestK2										X
+	TestK3										X
+	TestKAll									X
+	TestKIsEfficient							X
+	
+	TestGRootK1									X
+	TestGInternalInLeftSubTreeK1				X
+	TestGInternalInRightSubTreeK1				X
+	TestGLeafInLeftSubTreeK1					X
+	TestGLeafInRightSubTreeK1					X
+	TestGLastLeafOnRightK1						X
+	TestGUsesDaysNotNodes						X
+	TestGRootSumsCorrectly						X
+	TestGInternalInLeftSubTreeSumsCorrectly		X
+	TestGInternalInRightSubTreeSumsCorrectly	X
+	TestGLeafInLeftSubTreeSumsCorrectly			X
+	TestGLeafInRightSubTreeSumsCorrectly		X
+	TestGLargerK								X
+	TestGIsEfficient							X
+
+	TestRStartEndDatesHaveMatches				X
+	TestRStartDateMatchesEndDoesNot				X
+	TestRStartDateDoesntMatchEndDateDoes		X
+	TestRNeitherDateMatches						X
+	TestRStartOnFirstDate						X
+	TestREndOnLastDate							X
+	TestRStartOnFirstEndOnLastDate				X
+	TestRStartBeforeFirstDate					X
+	TestREndPastLastDate						X
+	TestRBothDatesOutOfRange					X
+	TestRIsEfficient							X
+	
+  	TestSRoundedDownToTwoDecimals				X
+  	TestSPaddedOutFromOneDecimal				X
+  	TestSPaddedOutFromNoDecimals				X
+
+3  / 3	-	Code Quality
+
+3  / 3	-	Documentation/Readability
+
+1.5  / 3	-	Testing Quality
+
+Tests are not commented, nor do you have one marked as the response to your failed hackerrank submission.
+

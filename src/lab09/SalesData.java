@@ -1,36 +1,33 @@
 package lab09;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.Scanner;
+import java.util.*;
 
-import lab09.CS232LinkedAVLTree.AVLNode;
 import lab09.CS232LinkedBinaryTree.BTNode;
 
 /**
- * The Acme Corporation needs to do a better job of tracking the performance of
- * their sales force. They have sales people all over the world selling anvils
- * and TNT to coyotes. Each time a sales person makes a sale they add the sales
- * information into the company's computer system. Unfortunately, they do not
- * all do the entry immediately, so the sales data often arrives out of order.
- * Sometimes there are mistakes and entire days worth of sales data must be
- * removed. There will be at most one sales record on any given day.
- * 
- * The managers at ACME Corporation would like to take advantage of all of this
- * data by making queries against it. Some of the things they would like to ask
- * include: How much was the most recent sale? What was the total of the last k
- * sales? How much in total sales was made on the k days starting at a given
- * date? How much in total sales were made between two dates? The specific
- * operations that must be supported are:
- * 
- * A: add a sales record. D: delete the sales record for a given date. S: get
- * the amount of the most recent sale. K: get the total amount of the k most
- * recent sales. G: get the total amount of sales in the k days starting on a
- * given date. R: get the total amount of all sales within a range of dates.
- * 
- * @author Briona Davis, Andy Guo
- *
- */
+* The Acme Corporation needs to do a better job of tracking the performance of
+* their sales force. They have sales people all over the world selling anvils
+* and TNT to coyotes. Each time a sales person makes a sale they add the sales
+* information into the company's computer system. Unfortunately, they do not
+* all do the entry immediately, so the sales data often arrives out of order.
+* Sometimes there are mistakes and entire days worth of sales data must be
+* removed. There will be at most one sales record on any given day.
+* 
+* The managers at ACME Corporation would like to take advantage of all of this
+* data by making queries against it. Some of the things they would like to ask
+* include: How much was the most recent sale? What was the total of the last k
+* sales? How much in total sales was made on the k days starting at a given
+* date? How much in total sales were made between two dates? The specific
+* operations that must be supported are:
+* 
+* A: add a sales record. D: delete the sales record for a given date. S: get
+* the amount of the most recent sale. K: get the total amount of the k most
+* recent sales. G: get the total amount of sales in the k days starting on a
+* given date. R: get the total amount of all sales within a range of dates.
+* 
+* @author Briona Davis, Andy Guo
+*
+*/
 public class SalesData {
 	private CS232LinkedAVLTree<Calendar, Double> tree;
 
@@ -74,7 +71,7 @@ public class SalesData {
 				if (most == null) {
 					System.out.println("$0.00");
 				} else {
-					System.out.println("$" + most.value);
+					System.out.println("$" + String.format("%.2f", most.value));
 				}
 
 			} else if (letters == 'K') {
@@ -137,34 +134,6 @@ public class SalesData {
 			
 		}
 		return total;
-		
-		
-		/*double sales = 0;
-		if (tree.getNodeWithKey(tree.root, startDate) != null) { // if the start
-																	// date is
-																	// not null
-			BTNode<Calendar, Double> curNode = tree.getNodeWithKey(tree.root, startDate);
-			while (curNode.key.compareTo(endDate) <= 0) {
-				// while the date of the current node is less or equal to than
-				// the end date
-				sales += curNode.value;
-				curNode = successor(curNode, tree.root);
-
-			}
-		} else {
-			tree.add(startDate, 0.00);
-			BTNode<Calendar, Double> curNode = tree.getNodeWithKey(tree.root, startDate);
-			while (curNode.key.compareTo(endDate) <= 0) {
-				// while the date of the current node is less or equal to than
-				// the end date
-				sales += curNode.value;
-				curNode = successor(curNode, tree.root);
-
-			}
-			tree.remove(startDate);
-
-		}
-		return sales;*/
 	}
 
 	/**
@@ -236,7 +205,6 @@ public class SalesData {
 	public BTNode<Calendar, Double> predecessor(BTNode<Calendar, Double> node, BTNode<Calendar, Double> root) {
 		// if smallest of the tree, return null
 		if (findSmallest(root).equals(node)) {
-			System.out.println("No predecessor");
 			return null;
 		} else if (node.isLeaf() || node.left == null) {
 			while (node.parent.key.compareTo(node.key) > 0) {

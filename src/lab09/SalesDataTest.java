@@ -116,5 +116,62 @@ public class SalesDataTest extends StdioTestBase {
 				"Incorrect result for this input.");
 	}
 	
+	@Test
+	public void testFormattingS(){
+		String input = "A 3/1/2017 1.2\nS\n";
+		String output = "$1.20";
 
+		runTest(SalesData.class, input, output,
+				"Incorrect result for testFormattingS.");
+	}
+	
+	@Test 
+	public void testFormattingK(){
+		String input = "A 3/1/2017 1.2\nA 3/2/2017 1.2\nK 1\n";
+		String output = "$1.20";
+
+		runTest(SalesData.class, input, output,
+				"Incorrect result for testFormattingK.");
+	}
+	@Test 
+	public void testFormattingK2(){
+		String input = "A 3/1/2017 1.2\nA 3/2/2017 1.2\nK 2\n";
+		String output = "$2.40";
+
+		runTest(SalesData.class, input, output,
+				"Incorrect result for testFormattingK2.");
+	}
+	@Test 
+	public void testFormattingK3(){
+		String input = "A 3/1/2017 1.2\nA 3/2/2017 1.2\nA 3/3/2017 1.2\nA 3/4/2017 1.2\nK 3\n";
+		String output = "$3.60";
+
+		runTest(SalesData.class, input, output,
+				"Incorrect result for testFormattingK3.");
+	}
+	@Test 
+	public void testFormattingG2(){
+		String input = "A 3/1/2017 1.2\nA 3/2/2017 1.2\nA 3/3/2017 1.2\nA 3/4/2017 1.2\nG 3/2/2017 2\n";
+		String output = "$2.40";
+
+		runTest(SalesData.class, input, output,
+				"Incorrect result for testFormattingG2.");
+	}
+	
+	@Test 
+	public void testFormattingR(){
+		String input = "A 3/1/2017 1.2\nA 3/2/2017 1.2\nA 3/3/2017 1.2\nA 3/4/2017 1.2\nR 3/2/2017 3/3/2017\n";
+		String output = "$2.40";
+
+		runTest(SalesData.class, input, output,
+				"Incorrect result for testFormattingR.");
+	}
+	@Test 
+	public void testFormattingR1(){
+		String input = "A 3/1/2017 1.2\nA 3/2/2017 1.2\nA 3/3/2017 1.2\nA 3/4/2017 1\nR 3/2/2017 3/4/2017\n";
+		String output = "$3.40";
+
+		runTest(SalesData.class, input, output,
+				"Incorrect result for testFormattingR1.");
+	}
 }
