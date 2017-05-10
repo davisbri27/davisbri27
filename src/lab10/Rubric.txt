@@ -1,0 +1,13 @@
+Lab #10 - GOOMFBook Registration
+
+Score:	25.5/ 25 = %
+
+Correctness:	15+1/ 15 
+  	
+
+3  / 3	-	Code Quality
+
+3/ 3	-	Documentation/Readability
+
+2.5  / 3	-	Testing Quality
+Tests should be commented.  
