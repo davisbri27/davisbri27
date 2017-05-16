@@ -1,6 +1,7 @@
 package lab11;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  * An adjacency matrix implementation of the Graph ADT for directed graphs.
@@ -47,8 +48,9 @@ public class CS232DirectedAdjacencyMatrixGraph<V, E> extends
 		checkVertices(v1, v2);
 
 		if (v1 == v2) {
+			
 			throw new IllegalArgumentException(
-					"Self-edges are not allowed: v1 cannot equal v2.");
+					"Self-edges are not allowed: v1 cannot equal v2. " + v1 );
 		}
 
 		if (value == null) {
@@ -89,7 +91,13 @@ public class CS232DirectedAdjacencyMatrixGraph<V, E> extends
 	 * {@inheritDoc}
 	 */
 	public ArrayList<Integer> getNeighbors(int v) {
-		// Intentionally not implemented - see homework assignment.
-		throw new UnsupportedOperationException("Not yet implemented");
+		checkVertex(v);
+		ArrayList<Integer> neighbors = new ArrayList<Integer>();
+		for(int n = 0; n < numVertices();n++){
+			if(edges[v][n] != null){
+				neighbors.add(n);
+			}
+		}
+		return neighbors;
 	}
 }
